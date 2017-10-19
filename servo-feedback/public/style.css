@@ -1,41 +1,184 @@
-html {
-  box-sizing: border-box;
-}
-*, *:before, *:after {
-  box-sizing: inherit;
-}
 body {
-  background-color: whitesmoke;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
-}
-h1 {
-  color: darkred;
-}
-a, a:link, a:visited {
-  color: darkred;
-}
-a:hover {
-  color: black;
+	background-color: white;
 }
 
-#servo {
-  background: #D4FF00;
-  width: 6rem;
-  height: 6rem;
-  border: 10px solid #D4FF00;
-  margin-left:auto;
-  margin-right:auto;
-  transition: transform 150ms ease-in-out;
+.center-div {
+	position: absolute;
+	margin: auto;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 800px;
+	height: 450px;
+	background-color: #eff4ff;
+	border-radius: 20px;
+}
+#tri1,
+#tri2,
+#tri3,
+#tri4,
+#tri5,
+#tri6,
+#tri7 {
+	border-left: 60px solid transparent;
+	border-right: 60px solid transparent;
+	border-bottom: 100px solid white;
 }
 
-.whisker {
-  background: white;
-  width: 10px;
-  height: 2rem;
-  margin-left:auto;
-  margin-right:auto;
+#tri1 {
+	position: absolute;
+	transform: translate(50%, 50%);
 }
 
-#servoControls {
-  zoom: 200%;
+#tri2 {
+	position: absolute;
+	transform: translate(20%, 160%);
+}
+
+#tri3 {
+	position: absolute;
+	transform: translate(120%, 300%);
+}
+
+#tri4 {
+	position: absolute;
+	transform: translate(300%, 80%);
+}
+
+#tri5 {
+	position: absolute;
+	transform: translate(530%, 50%);
+}
+
+#tri6 {
+	position: absolute;
+	transform: translate(480%, 160%);
+}
+
+#tri7 {
+	position: absolute;
+	transform: translate(280%, 300%);
+}
+
+#tri8,
+#tri9,
+#tri10,
+#tri11 {
+	border-left: 60px solid transparent;
+	border-right: 60px solid transparent;
+	border-top: 100px solid #bcceff;
+}
+
+#tri8 {
+	position: absolute;
+	transform: translate(110%, 50%);
+}
+
+#tri9 {
+	position: absolute;
+	transform: translate(50%, 300%);
+}
+
+#tri10 {
+	position: absolute;
+	transform: translate(300%, 190%);
+}
+
+#tri11 {
+	position: absolute;
+	transform: translate(420%, 150%);
+}
+
+#tri12,
+#tri13,
+#tri14 {
+	border-left: 60px solid transparent;
+	border-right: 60px solid transparent;
+	border-top: 100px solid white;
+}
+
+#tri12 {
+	position: absolute;
+	transform: translate(100%, 180%);
+}
+
+#tri13 {
+	position: absolute;
+	transform: translate(240%, 70%);
+}
+
+#tri14 {
+	position: absolute;
+	transform: translate(530%, 300%);
+}
+
+#tri15,
+#tri16 {
+	border-left: 60px solid transparent;
+	border-right: 60px solid transparent;
+	border-bottom: 100px solid #dbe6ff;
+}
+
+#tri15 {
+	position: absolute;
+	transform: translate(200%, 200%);
+}
+
+#tri16 {
+	position: absolute;
+	transform: translate(450%, 300%);
+}
+
+p {
+	font-family: 'Source Serif Pro', serif;
+	color: #e1e5f2;
+}
+
+#i {
+	position: absolute;
+	font-size: 80px;
+	transform: translate(400%, 30%);
+}
+
+#n {
+	position: absolute;
+	font-size: 70px;
+	transform: translate(500%, 10%);
+}
+
+#t {
+	position: absolute;
+	font-size: 80px;
+	transform: translate(890%, 90%);
+}
+
+#e {
+	position: absolute;
+	font-size: 80px;
+	transform: translate(900%, 70%);
+}
+
+#r {
+	position: absolute;
+	font-size: 80px;
+	transform: translate(1200%, 70%);
+}
+
+#a {
+	position: absolute;
+	font-size: 80px;
+	transform: translate(1200%, -10%);
+}
+
+#c {
+	position: absolute;
+	font-size: 60px;
+	transform: translate(1800%, 80%);
+}
+
+#t1 {
+	position: absolute;
+	font-size: 100px;
+	transform: translate(2150%, 40%);
 }
