@@ -162,16 +162,29 @@ body {
 	right: 130px;
 	/*  transform: translate(450%, 300%);*/
 }
+.darkblue {
+	transform-origin: 50% 50%;
+}
+.white {
+	transition: all 2s ease;
+}
+.lightblue {
+	transition: all 2s ease;
+}
+.letters {
+	transition: all 2s ease;
+}
 
 p {
 	font-family: 'Source Serif Pro', serif;
 	color: #e1e5f2;
+	margin: 0;
 }
 
 #i {
 	position: absolute;
 	font-size: 80px;
-	top: 70px;
+	top: 150px;
 	left: 100px;
 	/*  transform: translate(400%, 30%);*/
 }
@@ -179,7 +192,7 @@ p {
 #n {
 	position: absolute;
 	font-size: 70px;
-	top: 10px;
+	top: 80px;
 	left: 220px;
 	/*  transform: translate(500%, 10%);*/
 }
@@ -187,7 +200,7 @@ p {
 #t {
 	position: absolute;
 	font-size: 80px;
-	bottom: -50px;
+	bottom: 30px;
 	left: 230px;
 	/*  transform: translate(890%, 90%);*/
 }
@@ -195,7 +208,7 @@ p {
 #e {
 	position: absolute;
 	font-size: 80px;
-	bottom: 10px;
+	bottom: 90px;
 	left: 360px;
 	/*  transform: translate(900%, 70%);*/
 }
@@ -203,7 +216,7 @@ p {
 #r {
 	position: absolute;
 	font-size: 80px;
-	bottom: 10px;
+	bottom: 90px;
 	left: 400px;
 	/*  transform: translate(1200%, 70%);*/
 }
@@ -211,7 +224,7 @@ p {
 #a {
 	position: absolute;
 	font-size: 80px;
-	top: -40px;
+	top: 40px;
 	right: 270px;
 	/*  transform: translate(1200%, -10%);*/
 }
@@ -219,7 +232,7 @@ p {
 #c {
 	position: absolute;
 	font-size: 60px;
-	top: 150px;
+	top: 200px;
 	right: 250px;
 	/*  transform: translate(1800%, 80%);*/
 }
@@ -227,7 +240,7 @@ p {
 #t1 {
 	position: absolute;
 	font-size: 100px;
-	bottom: -10px;
+	bottom: 90px;
 	right: 70px;
 	/*  transform: translate(2150%, 40%);*/
 }

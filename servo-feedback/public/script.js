@@ -23,6 +23,8 @@ function handleCommand(d) {
 			break;
 	}
 }
+//------My functions-----------
+
 function twist1() {
 	send(MsgTwist1, 0);
 }
@@ -32,6 +34,73 @@ function twist2() {
 function twist3() {
 	send(MsgTwist3, 0);
 }
+
+function initRotate() {
+	const elements = document.querySelectorAll('.darkblue');
+	elements.forEach(element => {
+		let intervalId;
+		let degrees = 0;
+		element.addEventListener('mouseover', event => {
+			intervalId = setInterval(() => {
+				move(element)
+					.rotate((degrees += 180))
+					.end();
+			}, 500);
+		});
+		element.addEventListener('mouseleave', event => {
+			clearInterval(intervalId);
+			degrees = 0;
+			move(element)
+				.rotate(0)
+				.end();
+		});
+	});
+}
+
+function initColor() {
+	const elements = document.querySelectorAll('.white');
+	elements.forEach(element => {
+		element.addEventListener('click', event => {
+			element.style.borderTopColor = '#bcceff';
+			element.style.borderBottomColor = '#bcceff';
+			setTimeout(() => {
+				element.style.borderTopColor = 'white';
+				element.style.borderBottomColor = 'white';
+			}, 2000);
+		});
+	});
+}
+
+function initMove() {
+	const elements = document.querySelectorAll('.lightblue');
+	elements.forEach(element => {
+		element.addEventListener('mouseover', event => {
+			element.style.transform = 'translateX(200px)';
+			setTimeout(() => {
+				element.style.transform = '';
+			}, 2000);
+		});
+	});
+}
+
+function initLetters() {
+	const elements = document.querySelectorAll('.letters');
+	elements.forEach(element => {
+		element.addEventListener('click', event => {
+			document.querySelector('#n').style.transform = 'translate(-78px, 79px)';
+			document.querySelector('#t').style.transform = 'translate(-34px, -169px)';
+			document.querySelector('#e').style.transform = 'translate(-126px, -110px)';
+			document.querySelector('#r').style.transform = 'translate(-114px, -110px)';
+			document.querySelector('#a').style.transform = 'translate(-157px, 110px)';
+			document.querySelector('#c').style.transform = 'translate(-132px, -32px)';
+			document.querySelector('#t1').style.transform = 'translate(-265px, -103px)';
+			setTimeout(() => {
+				elements.forEach(element => (element.style.transform = ''));
+			}, 2000);
+		});
+	});
+}
+
 // Received the position of the servo
 function onPositionUpdate(d) {
 	// We expect numbers between 0-180, but sometimes this can be a bit
@@ -53,6 +122,10 @@ function setStatus(msg) {
 }
 
 function onDocumentReady() {
+	initRotate();
+	initColor();
+	initMove();
+	initLetters();
 	socket = new ReconnectingWebsocket('ws://' + location.host + '/serial');
 	servoEl = document.getElementById('servo');
 	msgEl = document.getElementById('msg');
@@ -91,20 +164,6 @@ function onDocumentReady() {
 	setInterval(function(e) {
 		send(MsgPosition, 0);
 	}, 1000);
-
-	document.getElementById('posBtn').addEventListener('click', function(e) {
-		var newPos = lastPos + stepSize;
-		if (newPos > 180) newPos = 180;
-		setStatus(`Moving to ${newPos}`);
-		send(MsgMove, newPos);
-	});
-
-	document.getElementById('negBtn').addEventListener('click', function(e) {
-		var newPos = lastPos - stepSize;
-		if (newPos < 0) newPos = 0;
-		setStatus(`Moving to ${newPos}`);
-		send(MsgMove, newPos);
-	});
 }
 
 function send(intValue, floatValue) {
