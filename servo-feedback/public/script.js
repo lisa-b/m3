@@ -191,6 +191,7 @@ function onDocumentReady() {
 	initLetters();
 	initTri4();
 	initTri3();
+	hoverElements();
 	socket = new ReconnectingWebsocket('ws://' + location.host + '/serial');
 	servoEl = document.getElementById('servo');
 	msgEl = document.getElementById('msg');
