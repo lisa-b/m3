@@ -101,6 +101,47 @@ function initLetters() {
 	});
 }
 
+function initTri4() {
+	const element = document.querySelector('#tri4');
+	element.addEventListener('click', event => {
+		document.querySelectorAll('.white').forEach(element => {
+			element.style.borderTopColor = '#bcceff';
+			element.style.borderBottomColor = '#bcceff';
+			setTimeout(() => {
+				element.style.borderTopColor = 'white';
+				element.style.borderBottomColor = 'white';
+			}, 2000);
+		});
+	});
+}
+
+function initTri3() {
+	const element = document.querySelector('#tri3');
+	element.addEventListener('click', event => {
+		document.querySelector('#tri1').style.transitionDelay = '500ms';
+		document.querySelector('#tri2').style.transitionDelay = '1250ms';
+		document.querySelector('#tri3').style.transitionDelay = '750ms';
+		document.querySelector('#tri4').style.transitionDelay = '750ms';
+		document.querySelector('#tri5').style.transitionDelay = '1000ms';
+		document.querySelector('#tri6').style.transitionDelay = '1500ms';
+		document.querySelector('#tri7').style.transitionDelay = '1000ms';
+		document.querySelector('#tri12').style.transitionDelay = '500ms';
+		document.querySelector('#tri13').style.transitionDelay = '1250ms';
+		document.querySelector('#tri14').style.transitionDelay = '1500ms';
+		document.querySelectorAll('.white').forEach(element => {
+			element.style.borderTopColor = '#bcceff';
+			element.style.borderBottomColor = '#bcceff';
+			setTimeout(() => {
+				element.style.borderTopColor = 'white';
+				element.style.borderBottomColor = 'white';
+			}, 3000);
+			setTimeout(() => {
+				element.style.transitionDelay = '';
+			}, 6500);
+		});
+	});
+}
+
 // Received the position of the servo
 function onPositionUpdate(d) {
 	// We expect numbers between 0-180, but sometimes this can be a bit
@@ -126,6 +167,8 @@ function onDocumentReady() {
 	initColor();
 	initMove();
 	initLetters();
+	initTri4();
+	initTri3();
 	socket = new ReconnectingWebsocket('ws://' + location.host + '/serial');
 	servoEl = document.getElementById('servo');
 	msgEl = document.getElementById('msg');
