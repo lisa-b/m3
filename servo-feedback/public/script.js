@@ -10,6 +10,9 @@ const MsgPosition = 4;
 const MsgTwist1 = 5;
 const MsgTwist2 = 6;
 const MsgTwist3 = 7;
+const MsgTwist4 = 8;
+const MsgStart = 9;
+const MsgStopp = 10;
 
 const stepSize = 10; // How much +/- buttons move by
 
