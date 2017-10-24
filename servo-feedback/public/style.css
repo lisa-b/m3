@@ -173,9 +173,6 @@ body {
 }
 .letters {
 	transition: all 2s ease;
-}
-
-p {
 	font-family: 'Source Serif Pro', serif;
 	color: #e1e5f2;
 	margin: 0;
