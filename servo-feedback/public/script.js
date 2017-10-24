@@ -37,6 +37,9 @@ function twist2() {
 function twist3() {
 	send(MsgTwist3, 0);
 }
+function twist4() {
+	send(MsgTwist4, 0);
+}
 
 function initRotate() {
 	const elements = document.querySelectorAll('.darkblue');
