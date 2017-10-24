@@ -27,6 +27,8 @@ int minFeedback;
 int maxFeedback;
 int tolerance = 2; // max feedback measurement error
 
+float startStopp = 0; 
+
 Servo servo;  
 
 enum {
@@ -37,7 +39,11 @@ enum {
   MsgPosition,    // 4
   MsgTwist1,       // 5
   MsgTwist2,       // 6
-  MsgTwist3       // 7
+  MsgTwist3,       // 7
+  MsgTwist4,        //8
+  MsgStart,        // 9
+  MsgStopp         // 10
+  
 };
 
 
@@ -50,11 +56,31 @@ void setup()  {
   servo.detach();   
 
   report(MsgAcknowledge, "Ready");
+
 } 
 
 void loop() {
   // Process serial communucation
   recvWithStartEndMarkers();
+
+ 
+  // checks if servo should move continously
+  if(startStopp > 0) {
+    switch (startStopp){
+      case 1: 
+        sound1();
+        break;
+      case 2:
+        sound2();
+        break;
+      case 3:
+        sound3();
+        break;
+      case 4:
+        sound4();
+        break;
+      }
+    }
 
   // If we received a command, process it
   if (newData == true) {
@@ -78,81 +104,114 @@ void loop() {
        case MsgTwist3:
         twist3();
         break;
+       case MsgTwist4:
+        twist4();
+        break;
+       case MsgStart:
+        startStopp = floatFromPC;
+        break;
+       case MsgStopp:
+        startStopp = 0;
+        servo.detach();
+        break;
       }
       // Debug: print parsed command to serial
       // showParsedData();
       newData = false;
     }
 }
-// Min funktion
+// Functions to handle click
 
 void twist1(){
-  moveServo(servo, feedbackPin, 1);
-  moveServo(servo, feedbackPin, 180);
-  moveServo(servo, feedbackPin, 1);
-  moveServo(servo, feedbackPin, 180);
-  moveServo(servo, feedbackPin, 1);
-  moveServo(servo, feedbackPin, 180);
+servo.attach(servoPin);
+  
+  servo.write(1);
+  delay (1000);
+  
+  servo.write(50);
+  delay (1000);
+
+  servo.detach();
 
 }
 
 void twist2(){
-  Serial.println("move to 1");
-  moveServo(servo, feedbackPin, 1);
-  delay (300);
-  Serial.println("move to 30");
-  moveServo(servo, feedbackPin, 30);
-  delay (300);
-  Serial.println("move to 60");
-  moveServo(servo, feedbackPin, 60);
-  delay (300);
-  Serial.println("move to 90");
-  moveServo(servo, feedbackPin, 90);
-  delay (300);
-  Serial.println("move to 120");
-  moveServo(servo, feedbackPin, 120);
-  delay (300);
-  Serial.println("move to 150");
-  moveServo(servo, feedbackPin, 150);
-  delay (300);
-  Serial.println("move to 180");
-  moveServo(servo, feedbackPin, 180);
+ servo.attach(servoPin);
+  
+  servo.write(20);
+  delay (1000);
+  
+  servo.write(30);
+  delay (1000);
+
+  servo.detach();
+
 }
 void twist3(){
   servo.attach(servoPin);
   
-  Serial.println("move to 1");
-  servo.write(1);
-  delay (2000);
-
-  Serial.println("move to 30");
-  servo.write(30);
-  delay (500);
-  
-  Serial.println("move to 60");
-  servo.write(60);
-  delay (500);
-  
-  Serial.println("move to 90");
-  servo.write(90);
-  delay (500);
-  
-  Serial.println("move to 120");
-  servo.write(120);
-  delay (500);
-  
-  Serial.println("move to 150");
-  servo.write(150);
-  delay (500);
-  
-  Serial.println("move to 180");
-  servo.write(180);
-  delay(500);
+  servo.write(50);
+  delay (1000);
 
   servo.detach();
 }
 
+void twist4(){
+    servo.attach(servoPin);
+  
+  servo.write(100);
+  delay (1000);
 
+  servo.detach();
+  }
+
+// functions to handle continuesly movements
+
+void sound1(){
+  servo.attach(servoPin);
+  
+  servo.write(100);
+  delay (1000);
+
+  servo.write(150);
+  delay (1000);
+
+  servo.detach();
+  }
+
+void sound2(){
+  servo.attach(servoPin);
+  
+  servo.write(100);
+  delay (1000);
+
+  
+  servo.write(150);
+  delay (1000);
+
+  servo.detach();
+  }
+
+  void sound3(){
+  servo.attach(servoPin);
+  
+  servo.write(100);
+  delay (1000);
+
+  servo.write(150);
+  delay (1000);
+
+  servo.detach();
+  }
+
+void sound4(){
+  servo.attach(servoPin);
+  
+  servo.write(100);
+  delay (1000);
+
+  servo.detach();
+  }
 
 // Calibrate servo, and establish relation between physical movement and
 // sensor values
