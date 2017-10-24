@@ -140,16 +140,16 @@ function initTri4() {
 function initTri3() {
 	const element = document.querySelector('#tri3');
 	element.addEventListener('click', event => {
-		document.querySelector('#tri1').style.transitionDelay = '500ms';
-		document.querySelector('#tri2').style.transitionDelay = '1250ms';
-		document.querySelector('#tri3').style.transitionDelay = '750ms';
-		document.querySelector('#tri4').style.transitionDelay = '750ms';
-		document.querySelector('#tri5').style.transitionDelay = '1000ms';
-		document.querySelector('#tri6').style.transitionDelay = '1500ms';
-		document.querySelector('#tri7').style.transitionDelay = '1000ms';
-		document.querySelector('#tri12').style.transitionDelay = '500ms';
-		document.querySelector('#tri13').style.transitionDelay = '1250ms';
-		document.querySelector('#tri14').style.transitionDelay = '1500ms';
+		document.querySelector('#tri1').style.transitionDelay = '0ms';
+		document.querySelector('#tri2').style.transitionDelay = '750ms';
+		document.querySelector('#tri3').style.transitionDelay = '0ms';
+		document.querySelector('#tri4').style.transitionDelay = '250ms';
+		document.querySelector('#tri5').style.transitionDelay = '500ms';
+		document.querySelector('#tri6').style.transitionDelay = '1000ms';
+		document.querySelector('#tri7').style.transitionDelay = '500ms';
+		document.querySelector('#tri12').style.transitionDelay = '0ms';
+		document.querySelector('#tri13').style.transitionDelay = '750ms';
+		document.querySelector('#tri14').style.transitionDelay = '250ms';
 		document.querySelectorAll('.white').forEach(element => {
 			element.style.borderTopColor = '#bcceff';
 			element.style.borderBottomColor = '#bcceff';
