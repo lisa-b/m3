@@ -97,7 +97,7 @@ function initMove() {
 	const elements = document.querySelectorAll('.lightblue');
 	elements.forEach(element => {
 		element.addEventListener('mouseover', event => {
-			element.style.transform = 'translateX(200px)';
+			element.style.transform = `translateX(${event.target.dataset.move})`;
 			setTimeout(() => {
 				element.style.transform = '';
 			}, 2000);
