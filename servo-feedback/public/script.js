@@ -41,6 +41,19 @@ function twist4() {
 	send(MsgTwist4, 0);
 }
 
+// ties data-hoverfloat to sound-function
+function hoverElements() {
+	document.querySelectorAll('.all').forEach(element => {
+		element.addEventListener('mouseover', event => {
+			console.log(event.target.dataset.hoverfloat);
+			send(MsgStart, event.target.dataset.hoverfloat);
+		});
+		element.addEventListener('mouseleave', event => {
+			send(MsgStopp, 0);
+		});
+	});
+}
+
 function initRotate() {
 	const elements = document.querySelectorAll('.darkblue');
 	elements.forEach(element => {
