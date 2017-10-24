@@ -41,6 +41,9 @@ function initRotate() {
 		let intervalId;
 		let degrees = 0;
 		element.addEventListener('mouseover', event => {
+			move(element)
+				.rotate((degrees += 180))
+				.end();
 			intervalId = setInterval(() => {
 				move(element)
 					.rotate((degrees += 180))
