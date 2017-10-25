@@ -27,7 +27,7 @@ int minFeedback;
 int maxFeedback;
 int tolerance = 2; // max feedback measurement error
 
-float startStopp = 0; 
+int startStopp = 0; 
 
 Servo servo;  
 
@@ -52,7 +52,7 @@ void setup()  {
   
   // Set up servo
   servo.attach(servoPin);   
-  calibrate(servo, feedbackPin, 20, 160);  // calibrate for the 20-160 degree range
+calibrate(servo, feedbackPin, 20, 160);  // calibrate for the 20-160 degree range
   servo.detach();   
 
   report(MsgAcknowledge, "Ready");
@@ -66,21 +66,21 @@ void loop() {
  
   // checks if servo should move continously
   if(startStopp > 0) {
-    switch (startStopp){
-      case 1: 
-        sound1();
-        break;
-      case 2:
-        sound2();
-        break;
-      case 3:
-        sound3();
-        break;
-      case 4:
-        sound4();
-        break;
-      }
+    switch (startStopp) {  
+  //    case 1: 
+    //    sound1();
+      //  break;
+//      case 2:
+//        sound2();
+//        break;
+//      case 3:
+//        sound3();
+//        break;
+//      case 4:
+//        sound4();
+//        break;
     }
+  }
 
   // If we received a command, process it
   if (newData == true) {
@@ -108,7 +108,7 @@ void loop() {
         twist4();
         break;
        case MsgStart:
-        startStopp = floatFromPC;
+        startStopp = (int)floatFromPC; //converts float to int
         break;
        case MsgStopp:
         startStopp = 0;
@@ -123,44 +123,76 @@ void loop() {
 // Functions to handle click
 
 void twist1(){
-servo.attach(servoPin);
-  
+  servo.attach(servoPin);
+
+  servo.write(30);
+  delay (2000);
+
   servo.write(1);
-  delay (1000);
-  
-  servo.write(50);
-  delay (1000);
+  delay (500);
+
+  servo.write(30);
+  delay (500);
+
+    servo.write(1);
+  delay (500);
 
   servo.detach();
 
 }
 
-void twist2(){
+void twist2(){  // click move light blue triangle
  servo.attach(servoPin);
-  
-  servo.write(20);
+  servo.write(180);
+  delay (2000);
+
+  servo.write(80);
   delay (1000);
+
+  servo.write(1);
+  delay (500);
+
+  
+  servo.detach();
+
+}
+void twist3(){    // click rotate dark blue triangle
+    servo.attach(servoPin);
+
+  servo.write(1);
+  delay (300);
+
+  servo.write(50);
+  delay (300);
+
+
+  servo.write(1);
+  delay (300);
+//
+//  servo.write(50);
+//  delay (300);
+//
+//  servo.write(1);
+//  delay (300);
+
+  servo.detach();
+}
+
+void twist4(){    // move letters
+    servo.attach(servoPin);
+
+  
+  servo.write(10);
+  delay (500);
   
   servo.write(30);
+  delay (500);
+
+    servo.write(50);
   delay (1000);
-
-  servo.detach();
-
-}
-void twist3(){
-  servo.attach(servoPin);
   
-  servo.write(50);
-  delay (1000);
-
-  servo.detach();
-}
-
-void twist4(){
-    servo.attach(servoPin);
-  
-  servo.write(100);
-  delay (1000);
+  servo.write(1);
+  delay (500);
 
   servo.detach();
   }
@@ -170,11 +202,11 @@ void twist4(){
 void sound1(){
   servo.attach(servoPin);
   
-  servo.write(100);
-  delay (1000);
+  servo.write(1);
+  delay (500);
 
-  servo.write(150);
-  delay (1000);
+  servo.write(5);
+  delay (500);
 
   servo.detach();
   }
@@ -193,16 +225,27 @@ void sound2(){
   }
 
   void sound3(){
+ 
   servo.attach(servoPin);
-  
-  servo.write(100);
-  delay (1000);
 
-  servo.write(150);
-  delay (1000);
+  servo.write(1);
+  delay (2000);
+
+  servo.write(50);
+  delay (300);
+
+
+  servo.write(1);
+  delay (300);
+
+  servo.write(50);
+  delay (300);
+
+  servo.write(1);
+  delay (300);
 
   servo.detach();
-  }
+ }
 
 void sound4(){
   servo.attach(servoPin);

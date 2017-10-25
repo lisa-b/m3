@@ -22,7 +22,7 @@ else document.addEventListener('DOMContentLoaded', onDocumentReady);
 function handleCommand(d) {
 	switch (d.integer) {
 		case MsgPosition:
-			onPositionUpdate(d);
+			//onPositionUpdate(d);
 			break;
 	}
 }
@@ -41,7 +41,7 @@ function twist4() {
 	send(MsgTwist4, 0);
 }
 
-// ties data-hoverfloat to sound-function
+// ties data-hoverfloat to sound-function Hur då?
 function hoverElements() {
 	document.querySelectorAll('.all').forEach(element => {
 		element.addEventListener('mouseover', event => {
@@ -49,6 +49,7 @@ function hoverElements() {
 			send(MsgStart, event.target.dataset.hoverfloat);
 		});
 		element.addEventListener('mouseleave', event => {
+			console.log('Sending STOPP!');
 			send(MsgStopp, 0);
 		});
 	});
@@ -59,23 +60,24 @@ function initRotate() {
 	elements.forEach(element => {
 		let intervalId;
 		let degrees = 0;
-		element.addEventListener('mouseover', event => {
+		element.addEventListener('click', event => {
+			twist3();
 			move(element)
-				.rotate((degrees += 180))
+				.rotate((degrees += 360))
 				.end();
-			intervalId = setInterval(() => {
-				move(element)
-					.rotate((degrees += 180))
-					.end();
-			}, 500);
+			//intervalId = setInterval(() => {
+			//move(element)
+			//.rotate((degrees += 180))
+			//.end();
+			//}, 500);
 		});
-		element.addEventListener('mouseleave', event => {
-			clearInterval(intervalId);
-			degrees = 0;
-			move(element)
-				.rotate(0)
-				.end();
-		});
+		//element.addEventListener('mouseleave', event => {
+		//	clearInterval(intervalId);
+		//	degrees = 0;
+		//	move(element)
+		//		.rotate(0)
+		//		.end();
+		//});
 	});
 }
 
@@ -83,6 +85,7 @@ function initColor() {
 	const elements = document.querySelectorAll('.white');
 	elements.forEach(element => {
 		element.addEventListener('click', event => {
+			twist1();
 			element.style.borderTopColor = '#bcceff';
 			element.style.borderBottomColor = '#bcceff';
 			setTimeout(() => {
@@ -96,7 +99,8 @@ function initColor() {
 function initMove() {
 	const elements = document.querySelectorAll('.lightblue');
 	elements.forEach(element => {
-		element.addEventListener('mouseover', event => {
+		element.addEventListener('click', event => {
+			twist2();
 			element.style.transform = `translateX(${event.target.dataset.move})`;
 			setTimeout(() => {
 				element.style.transform = '';
@@ -109,6 +113,7 @@ function initLetters() {
 	const elements = document.querySelectorAll('.letters');
 	elements.forEach(element => {
 		element.addEventListener('click', event => {
+			twist4();
 			document.querySelector('#n').style.transform = 'translate(-78px, 79px)';
 			document.querySelector('#t').style.transform = 'translate(-34px, -169px)';
 			document.querySelector('#e').style.transform = 'translate(-126px, -110px)';
@@ -124,18 +129,34 @@ function initLetters() {
 }
 
 function initTri4() {
-	const element = document.querySelector('#tri4');
-	element.addEventListener('click', event => {
-		document.querySelectorAll('.white').forEach(element => {
-			element.style.borderTopColor = '#bcceff';
-			element.style.borderBottomColor = '#bcceff';
-			setTimeout(() => {
-				element.style.borderTopColor = 'white';
-				element.style.borderBottomColor = 'white';
-			}, 2000);
+	const elements = document.querySelectorAll('#tri4, #tri6');
+	elements.forEach(element => {
+		element.addEventListener('click', event => {
+			document.querySelectorAll('.white').forEach(element => {
+				element.style.borderTopColor = '#bcceff';
+				element.style.borderBottomColor = '#bcceff';
+				setTimeout(() => {
+					element.style.borderTopColor = 'white';
+					element.style.borderBottomColor = 'white';
+				}, 2000);
+			});
 		});
 	});
 }
+
+// function initTri4() {
+// 	const element = document.querySelector('#tri4');
+// 	element.addEventListener('click', event => {
+// 		document.querySelectorAll('.white').forEach(element => {
+// 			element.style.borderTopColor = '#bcceff';
+// 			element.style.borderBottomColor = '#bcceff';
+// 			setTimeout(() => {
+// 				element.style.borderTopColor = 'white';
+// 				element.style.borderBottomColor = 'white';
+// 			}, 2000);
+// 		});
+// 	});
+// }
 
 function initTri3() {
 	const element = document.querySelector('#tri3');
