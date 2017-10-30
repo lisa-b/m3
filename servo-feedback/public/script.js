@@ -13,6 +13,8 @@ const MsgTwist3 = 7;
 const MsgTwist4 = 8;
 const MsgStart = 9;
 const MsgStopp = 10;
+const MsgTwist5 = 11;
+const MsgTwist6 = 12;
 
 const stepSize = 10; // How much +/- buttons move by
 
@@ -39,6 +41,14 @@ function twist3() {
 }
 function twist4() {
 	send(MsgTwist4, 0);
+}
+function twist5() {
+	send(MsgTwist5, 0);
+	console.log('twist5');
+}
+function twist6() {
+	send(MsgTwist6, 0);
+	console.log('twist6');
 }
 
 // ties data-hoverfloat to sound-function Hur då?
@@ -82,7 +92,7 @@ function initRotate() {
 }
 
 function initColor() {
-	const elements = document.querySelectorAll('.white');
+	const elements = document.querySelectorAll('.white:not(#tri3):not(#tri4)');
 	elements.forEach(element => {
 		element.addEventListener('click', event => {
 			twist1();
@@ -129,9 +139,10 @@ function initLetters() {
 }
 
 function initTri4() {
-	const elements = document.querySelectorAll('#tri4, #tri6');
+	const elements = document.querySelectorAll('#tri4');
 	elements.forEach(element => {
 		element.addEventListener('click', event => {
+			twist6();
 			document.querySelectorAll('.white').forEach(element => {
 				element.style.borderTopColor = '#bcceff';
 				element.style.borderBottomColor = '#bcceff';
@@ -161,6 +172,7 @@ function initTri4() {
 function initTri3() {
 	const element = document.querySelector('#tri3');
 	element.addEventListener('click', event => {
+		twist5();
 		document.querySelector('#tri1').style.transitionDelay = '0ms';
 		document.querySelector('#tri2').style.transitionDelay = '750ms';
 		document.querySelector('#tri3').style.transitionDelay = '0ms';
